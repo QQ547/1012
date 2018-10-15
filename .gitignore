@@ -1,0 +1,9 @@
+﻿################################################################################
+# 這個 .gitignore 檔案由 Microsoft(R) Visual Studio 自動建立。
+################################################################################
+
+/ConsoleApp1/.vs/ConsoleApp1
+/ConsoleApp1/ConsoleApp1/obj
+/ConsoleApp1/ConsoleApp1/ConsoleApp1.csproj
+/ConsoleApp1/ConsoleApp1.sln
+/ConsoleApp1/ConsoleApp1
