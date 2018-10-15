@@ -22,16 +22,30 @@ namespace opendata
             var xml = XElement.Load(@"C:\Users\user\Desktop\class1005\opendata\opendata\A17000000J-020028-cAw.xml");
             var dataset = xml.Descendants("row").ToList();
 
-            for (var i = 0; i < dataset.Count; i++)
+            Func<XElement, string, string> getValueFunc = (row, propertyName) =>
             {
-                var row = dataset[i];
+                return row.Element(propertyName)?.Value?.Trim();
+            };
+            dataset.ToList().ForEach(row =>
+            {
                 opendata.model.Class1 item = new opendata.model.Class1();
                 item.所在縣市 = getvalue(row, "所在縣市");
                 item.醫院名稱 = getvalue(row, "醫院名稱");
                 item.醫院評鑑結果 = getvalue(row, "醫院評鑑結果");
                 result.Add(item);
-            }
-       
+            });
+            result = dataset.ToList().Select(row =>
+            {
+                opendata.model.Class1 item = new opendata.model.Class1();
+                item.所在縣市 = getvalue(row, "所在縣市");
+                item.醫院名稱 = getvalue(row, "醫院名稱");
+                item.醫院評鑑結果 = getvalue(row, "醫院評鑑結果");
+                return item;
+            })
+            .Where(x => x.醫院評鑑結果 != null)
+            .Where(x => x.所在縣市 != "基隆市")
+            .ToList();
+
 
 
             return result;
