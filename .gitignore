@@ -7,3 +7,5 @@
 /ConsoleApp1/ConsoleApp1/ConsoleApp1.csproj
 /ConsoleApp1/ConsoleApp1.sln
 /ConsoleApp1/ConsoleApp1/bin/Debug/netcoreapp2.0
+/ConsoleApp1/ConsoleApp1/AppData/Database1.mdf
+/ConsoleApp1/ConsoleApp1/AppData/Database1_log.ldf

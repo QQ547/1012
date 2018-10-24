@@ -1,4 +1,5 @@
-﻿using opendata.model;
+﻿using ConsoleApp1.Repository;
+using opendata.model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,15 @@ namespace opendata
         {
             var a = 0;
             var dataset = findopendata();
-            showopendata(dataset);
+            Repository aa = new Repository();
+            var makeconn = aa.connect_sql();
+            dataset.ForEach(datasql=>
+                {
+                    aa.Insert_Data_SQL(makeconn, datasql);
+                });
+
             Console.ReadKey();
-        }
-      //12303
+        }      
         static List<opendata.model.Class1> findopendata()
         {
             List<opendata.model.Class1> result = new List<Class1>();
@@ -33,19 +39,19 @@ namespace opendata
                 item.醫院評鑑結果 = getvalue(row, "醫院評鑑結果");
                 result.Add(item);
             });
-            result = dataset.ToList().Select(row =>
-            {
-                opendata.model.Class1 item = new opendata.model.Class1();
-                item.所在縣市 = getvalue(row, "所在縣市");
-                item.醫院名稱 = getvalue(row, "醫院名稱");
-                item.醫院評鑑結果 = getvalue(row, "醫院評鑑結果");
-                return item;
-            })
-            .Where(x => x.醫院評鑑結果 != null)
-            .Where(x => x.所在縣市 != "基隆市")
-            .ToList();
+            //result = dataset.ToList().Select(row =>
+            //{
+            //    opendata.model.Class1 item = new opendata.model.Class1();
+            //    item.所在縣市 = getvalue(row, "所在縣市");
+            //    item.醫院名稱 = getvalue(row, "醫院名稱");
+            //    item.醫院評鑑結果 = getvalue(row, "醫院評鑑結果");
+            //    return item;
+            //})
+            //.Where(x => x.醫院評鑑結果 != null)
+            //.Where(x => x.所在縣市 != "基隆市")
+            //.ToList();
 
-            result = result.Where(x => x.醫院評鑑結果 != null).ToList();
+            //result = result.Where(x => x.醫院評鑑結果 != null).ToList();
 
             return result;
         }
