@@ -13,9 +13,8 @@ namespace opendata
             var dataset = findopendata();
             showopendata(dataset);
             Console.ReadKey();
-
         }
-
+        
         static List<opendata.model.Class1> findopendata()
         {
             List<opendata.model.Class1> result = new List<Class1>();
@@ -46,7 +45,7 @@ namespace opendata
             .Where(x => x.所在縣市 != "基隆市")
             .ToList();
 
-
+            result = result.Where(x => x.醫院評鑑結果 != null).ToList();
 
             return result;
         }
