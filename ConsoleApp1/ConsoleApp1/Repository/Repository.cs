@@ -35,7 +35,8 @@ namespace ConsoleApp1.Repository
                 {
                     Console.WriteLine(String.Format("{0}", reader["所在縣市"]));
                 }
-            }
+             }
+            conn.Close();
 
         }
     }
