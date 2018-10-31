@@ -17,6 +17,7 @@ namespace opendata
             dataset.ForEach(datasql=>
                 {
                     aa.Insert_Data_SQL(makeconn, datasql);
+                    aa.select_Data_SQL(makeconn, datasql);
                 });
 
             Console.ReadKey();

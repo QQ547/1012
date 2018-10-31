@@ -24,5 +24,19 @@ namespace ConsoleApp1.Repository
             mySqlCmd.ExecuteNonQuery();
             conn.Close();
         }
+        public void select_Data_SQL(SqlConnection conn, Class1 item)
+        {
+            conn.Open();
+            string sql_Insert = "INSERT INTO opendata_Table(所在縣市,醫院名稱,醫院評鑑結果) VALUES ( N'" + item.所在縣市 + "',N'" + item.醫院名稱 + "',N'" + item.醫院評鑑結果 + "')";
+            SqlCommand mySqlCmd = new SqlCommand(sql_Insert, conn);
+            using (SqlDataReader reader = mySqlCmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    Console.WriteLine(String.Format("{0}", reader["所在縣市"]));
+                }
+            }
+
+        }
     }
 }
