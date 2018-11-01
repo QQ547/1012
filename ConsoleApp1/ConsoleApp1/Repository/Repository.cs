@@ -24,5 +24,25 @@ namespace ConsoleApp1.Repository
             mySqlCmd.ExecuteNonQuery();
             conn.Close();
         }
+        public void select_Data_SQL(SqlConnection conn, Class1 item)
+        {
+            conn.Open();
+            string sql_Insert = "SELECT 所在縣市,醫院名稱,醫院評鑑結果 FROM opendata_Table;";
+            SqlCommand mySqlCmd = new SqlCommand(sql_Insert, conn);
+            SqlDataReader reader = mySqlCmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    Console.WriteLine("{0}\t{1}\t{2}",reader.GetString(0), reader.GetString(1), reader.GetString(2));
+                }
+            }
+            else
+            {
+                Console.WriteLine("No rows found.");
+            }
+            reader.Close();
+            conn.Close();
+        }
     }
 }

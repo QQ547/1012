@@ -5,19 +5,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 namespace opendata
-{
+{//1230
     class Program
     {
         static void Main(string[] args)
         {
-            var a = 0;
             var dataset = findopendata();
             Repository aa = new Repository();
             var makeconn = aa.connect_sql();
             dataset.ForEach(datasql=>
                 {
                     aa.Insert_Data_SQL(makeconn, datasql);
+                    aa.select_Data_SQL(makeconn, datasql);
                 });
+          
 
             Console.ReadKey();
         }      
